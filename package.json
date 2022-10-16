@@ -2,10 +2,11 @@
   "name": "vscode-statusbar-json-path",
   "displayName": "JSON Path Status Bar",
   "description": "Shows the path to the selected JSON property in the status bar",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Rich Somerfield",
   "contributors": [
-    "Quentin Lienhardt"
+    "Quentin Lienhardt",
+    "Troy Stephens"
   ],
   "publisher": "richie5um2",
   "license": "MIT",
@@ -53,6 +54,20 @@
           "enumDescriptions": [
             "Use dots (JS friendly) for keys separators",
             "Use indexes (Python friendly) for keys separators"
+          ],
+          "scope": "resource"
+        },
+        "statusBarJSONPath.arrayDotNotation": {
+          "type": "string",
+          "default": "dots",
+          "description": "Choose between `dots` or `indexes` for JSON arrays.",
+          "enum": [
+            "dots",
+            "indexes"
+          ],
+          "enumDescriptions": [
+            "Use dots (JS friendly) for array indexes",
+            "Use indexes (Python friendly) for array indexes"
           ],
           "scope": "resource"
         }

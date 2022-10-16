@@ -46,7 +46,8 @@ function updateStatus(status: vscode.StatusBarItem): void {
     const text = editor.document.getText();
     const config = vscode.workspace.getConfiguration("statusBarJSONPath");
     const sep = config.get("keysSeparators") as string;
-    const path = jsonPathTo(text, editor.document.offsetAt(editor.selection.active), sep);
+    const arraySep = config.get("arrayDotNotation") as string;
+    const path = jsonPathTo(text, editor.document.offsetAt(editor.selection.active), sep, arraySep);
     currentString = path;
 
     status.text = "JSONPath: " + path;

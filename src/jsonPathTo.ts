@@ -11,7 +11,7 @@ interface Frame {
   key?: string;
 }
 
-export function jsonPathTo(text: string, offset: number, separatorType: string) {
+export function jsonPathTo(text: string, offset: number, separatorType: string, arraySeparator: string) {
   let pos = 0;
   let stack: Frame[] = [];
   let isInKey = false;
@@ -62,7 +62,7 @@ export function jsonPathTo(text: string, offset: number, separatorType: string) 
   }
 
   if (separatorType === "dots") {
-    return pathToStringDot(stack);
+    return pathToStringDot(stack, arraySeparator);
   } else if (separatorType === "indexes") {
     return pathToStringIndexes(stack);
   } else {
@@ -70,7 +70,7 @@ export function jsonPathTo(text: string, offset: number, separatorType: string) 
   }
 }
 
-function pathToStringDot(path: Frame[]): string {
+function pathToStringDot(path: Frame[], arraySeparator: string): string {
   let s = "";
   for (const frame of path) {
     if (frame.colType === ColType.Object) {
@@ -85,7 +85,13 @@ function pathToStringDot(path: Frame[]): string {
         }
       }
     } else {
-      s += `[${frame.index}]`;
+      if(arraySeparator === "dots"){
+        s += `.${frame.index}`
+      }
+      else 
+      {
+        s += `[${frame.index}]`;
+      }
     }
   }
   return s;
